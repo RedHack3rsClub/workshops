@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
 
-// Author: Red
-
 // File @openzeppelin/contracts/utils/Counters.sol@v4.7.3
+
 
 // OpenZeppelin Contracts v4.4.1 (utils/Counters.sol)
 
@@ -50,6 +49,7 @@ library Counters {
 
 // File @openzeppelin/contracts/utils/Context.sol@v4.7.3
 
+
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
 pragma solidity ^0.8.0;
@@ -76,6 +76,7 @@ abstract contract Context {
 
 
 // File @openzeppelin/contracts/access/Ownable.sol@v4.7.3
+
 
 // OpenZeppelin Contracts (last updated v4.7.0) (access/Ownable.sol)
 
@@ -164,7 +165,7 @@ abstract contract Ownable is Context {
 
 // OpenZeppelin Contracts (last updated v4.7.0) (utils/Address.sol)
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.1;
 
 /**
  * @dev Collection of functions related to the address type
@@ -385,85 +386,6 @@ library Address {
 }
 
 
-// File @openzeppelin/contracts/utils/Strings.sol@v4.7.3
-
-
-// OpenZeppelin Contracts (last updated v4.7.0) (utils/Strings.sol)
-
-pragma solidity ^0.8.0;
-
-/**
- * @dev String operations.
- */
-library Strings {
-    bytes16 private constant _HEX_SYMBOLS = "0123456789abcdef";
-    uint8 private constant _ADDRESS_LENGTH = 20;
-
-    /**
-     * @dev Converts a `uint256` to its ASCII `string` decimal representation.
-     */
-    function toString(uint256 value) internal pure returns (string memory) {
-        // Inspired by OraclizeAPI's implementation - MIT licence
-        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
-
-        if (value == 0) {
-            return "0";
-        }
-        uint256 temp = value;
-        uint256 digits;
-        while (temp != 0) {
-            digits++;
-            temp /= 10;
-        }
-        bytes memory buffer = new bytes(digits);
-        while (value != 0) {
-            digits -= 1;
-            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
-            value /= 10;
-        }
-        return string(buffer);
-    }
-
-    /**
-     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation.
-     */
-    function toHexString(uint256 value) internal pure returns (string memory) {
-        if (value == 0) {
-            return "0x00";
-        }
-        uint256 temp = value;
-        uint256 length = 0;
-        while (temp != 0) {
-            length++;
-            temp >>= 8;
-        }
-        return toHexString(value, length);
-    }
-
-    /**
-     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
-     */
-    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
-        bytes memory buffer = new bytes(2 * length + 2);
-        buffer[0] = "0";
-        buffer[1] = "x";
-        for (uint256 i = 2 * length + 1; i > 1; --i) {
-            buffer[i] = _HEX_SYMBOLS[value & 0xf];
-            value >>= 4;
-        }
-        require(value == 0, "Strings: hex length insufficient");
-        return string(buffer);
-    }
-
-    /**
-     * @dev Converts an `address` with fixed length of 20 bytes to its not checksummed ASCII `string` hexadecimal representation.
-     */
-    function toHexString(address addr) internal pure returns (string memory) {
-        return toHexString(uint256(uint160(addr)), _ADDRESS_LENGTH);
-    }
-}
-
-
 // File @openzeppelin/contracts/utils/introspection/IERC165.sol@v4.7.3
 
 
@@ -669,32 +591,82 @@ interface IERC721Receiver {
 }
 
 
-// File @openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol@v4.7.3
+// File @openzeppelin/contracts/utils/Strings.sol@v4.7.3
 
 
-// OpenZeppelin Contracts v4.4.1 (token/ERC721/extensions/IERC721Metadata.sol)
+// OpenZeppelin Contracts (last updated v4.7.0) (utils/Strings.sol)
 
 pragma solidity ^0.8.0;
 
 /**
- * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
- * @dev See https://eips.ethereum.org/EIPS/eip-721
+ * @dev String operations.
  */
-interface IERC721Metadata is IERC721 {
-    /**
-     * @dev Returns the token collection name.
-     */
-    function name() external view returns (string memory);
+library Strings {
+    bytes16 private constant _HEX_SYMBOLS = "0123456789abcdef";
+    uint8 private constant _ADDRESS_LENGTH = 20;
 
     /**
-     * @dev Returns the token collection symbol.
+     * @dev Converts a `uint256` to its ASCII `string` decimal representation.
      */
-    function symbol() external view returns (string memory);
+    function toString(uint256 value) internal pure returns (string memory) {
+        // Inspired by OraclizeAPI's implementation - MIT licence
+        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
+
+        if (value == 0) {
+            return "0";
+        }
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
+    }
 
     /**
-     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation.
      */
-    function tokenURI(uint256 tokenId) external view returns (string memory);
+    function toHexString(uint256 value) internal pure returns (string memory) {
+        if (value == 0) {
+            return "0x00";
+        }
+        uint256 temp = value;
+        uint256 length = 0;
+        while (temp != 0) {
+            length++;
+            temp >>= 8;
+        }
+        return toHexString(value, length);
+    }
+
+    /**
+     * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
+     */
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
+        bytes memory buffer = new bytes(2 * length + 2);
+        buffer[0] = "0";
+        buffer[1] = "x";
+        for (uint256 i = 2 * length + 1; i > 1; --i) {
+            buffer[i] = _HEX_SYMBOLS[value & 0xf];
+            value >>= 4;
+        }
+        require(value == 0, "Strings: hex length insufficient");
+        return string(buffer);
+    }
+
+    /**
+     * @dev Converts an `address` with fixed length of 20 bytes to its not checksummed ASCII `string` hexadecimal representation.
+     */
+    function toHexString(address addr) internal pure returns (string memory) {
+        return toHexString(uint256(uint160(addr)), _ADDRESS_LENGTH);
+    }
 }
 
 
@@ -726,6 +698,35 @@ abstract contract ERC165 is IERC165 {
     function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
         return interfaceId == type(IERC165).interfaceId;
     }
+}
+
+
+// File @openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol@v4.7.3
+
+
+// OpenZeppelin Contracts v4.4.1 (token/ERC721/extensions/IERC721Metadata.sol)
+
+pragma solidity ^0.8.0;
+
+/**
+ * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
+ * @dev See https://eips.ethereum.org/EIPS/eip-721
+ */
+interface IERC721Metadata is IERC721 {
+    /**
+     * @dev Returns the token collection name.
+     */
+    function name() external view returns (string memory);
+
+    /**
+     * @dev Returns the token collection symbol.
+     */
+    function symbol() external view returns (string memory);
+
+    /**
+     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+     */
+    function tokenURI(uint256 tokenId) external view returns (string memory);
 }
 
 
@@ -1185,12 +1186,19 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
 }
 
 
-// File contracts/NFT.sol
+// File contracts/NFT_base.sol
 
 
 
 // Author: Red
-
+// import "@openzeppelin/contracts/utils/Strings.sol";
+// import "@openzeppelin/contracts/utils/Context.sol";
+// import "@openzeppelin/contracts/utils/Address.sol";
+// import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+// import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+// import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+// import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+// import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 pragma solidity ^0.8.0;
 
 contract NFT is ERC721, Ownable {
@@ -1203,7 +1211,7 @@ contract NFT is ERC721, Ownable {
     string public baseExtension = ".json";
     uint256 public cost = 0.05 ether;
     uint256 public maxSupply = 20;
-    uint256 public maxMintAmount = 3;
+    uint256 public maxMintAmount = 4;
     bool public paused = true;
     address payable public payments;
 
